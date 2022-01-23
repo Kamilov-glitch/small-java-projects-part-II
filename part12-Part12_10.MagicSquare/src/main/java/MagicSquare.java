@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Arrays;
 
 public class MagicSquare {
 
@@ -15,20 +16,40 @@ public class MagicSquare {
         this.square = new int[size][size];
     }
 
-    // implement these three methods
     public ArrayList<Integer> sumsOfRows() {
-        return new ArrayList<>();
+        ArrayList<Integer> sums = new ArrayList<>();
+        for (int[] a : this.square) {
+            sums.add(Arrays.stream(a).sum());
+        }
+        return sums;
     }
 
     public ArrayList<Integer> sumsOfColumns() {
-        return new ArrayList<>();
+        ArrayList<Integer> sums = new ArrayList<>();
+        for (int i = 0; i < this.square.length; i++) {
+            int index = i;
+            sums.add(Arrays.stream(square).mapToInt(a ->  a[index]).sum());
+        }
+        return sums;
     }
 
     public ArrayList<Integer> sumsOfDiagonals() {
-        return new ArrayList<>();
+        ArrayList<Integer> sums = new ArrayList<>();
+        int sumOfFirstDiagonal = 0;
+        for (int i = 0; i < this.square.length; i++) {
+            sumOfFirstDiagonal += this.square[i][i];
+        }
+        int sumOfSecondDiagonal = 0;
+        int row = 0;
+        for (int i = (this.square.length - 1); i >= 0; i--) {
+            sumOfSecondDiagonal += this.square[row][i];
+            row++;
+        }
+        sums.add(sumOfFirstDiagonal);
+        sums.add(sumOfSecondDiagonal);
+        return sums;
     }
 
-    // ready-made helper methods -- don't touch these
     public boolean isMagicSquare() {
         return sumsAreSame() && allNumbersDifferent();
     }
