@@ -53,7 +53,13 @@ public class CollageApplication extends Application {
         ImageView image = new ImageView(targetImage);
 
         Pane pane = new Pane();
+        ImageView newImage = image;
+        newImage.setScaleX(0.5);
+        newImage.setScaleY(0.5);
+        newImage.setTranslateX(300);
+        newImage.setTranslateX(128);
         pane.getChildren().add(image);
+        pane.getChildren().add(newImage);
 
         stage.setScene(new Scene(pane));
         stage.show();

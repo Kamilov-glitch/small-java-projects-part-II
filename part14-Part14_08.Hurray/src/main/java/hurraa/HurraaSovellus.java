@@ -1,5 +1,6 @@
 package hurraa;
 
+import javafx.scene.media.AudioClip;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,10 +12,15 @@ public class HurraaSovellus extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         BorderPane pane = new BorderPane();
+        
+        AudioClip sound = new AudioClip("file:bell.wav");
 
         Button nappi = new Button("Hurraa!");
         pane.setCenter(nappi);
-
+        
+        nappi.setOnMouseClicked((event) -> {
+            sound.play();
+        });
 
         Scene scene = new Scene(pane, 600, 400);
 
